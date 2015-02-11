@@ -8,9 +8,10 @@
  * Restituisce la lunghezza della lista.
  */
 int size(intLinkedList list) {
-    int r=0;
     
-    // TODO Implementa il corpo della funzione
+    int r;
+    
+    for(r=0;list!=NULL;r++)list=list->next;
     
     return r;
 }
@@ -23,7 +24,16 @@ int size(intLinkedList list) {
  */
 intLinkedList insertAtBeginning(intLinkedList list, int newKey) {
     
-    // TODO Implementa il corpo della funzione
+    intLinkedList temp;
+    
+    temp=(intLinkedList)malloc(sizeof(intLLElement));
+    
+    if(temp!=NULL){
+        temp->next=list;
+        temp->key=newKey;
+        list=temp;
+    }
+    else list=NULL;
     
     return list;
 }
@@ -39,9 +49,10 @@ intLinkedList insertAtBeginning(intLinkedList list, int newKey) {
  */
 void printList(intLinkedList list) {
     
-    // TODO Implementa il corpo della funzione
-    
-    return;
+    while(list!=NULL){
+        printf("%d; ",list->key);
+        list=list->next;
+    }
 }
 
 
@@ -51,6 +62,13 @@ void printList(intLinkedList list) {
  */
 intLinkedList empty(intLinkedList list) {
     
+    intLinkedList delete=list;
+    
+    while(list!=NULL){
+       list=list->next;
+       free(delete);
+       delete=list;
+    }
     // TODO Implementa il corpo della funzione
     
     return NULL;
